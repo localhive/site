@@ -421,38 +421,40 @@
 </section>
 
 <section data-bs-version="5.1" class="form5 cid-tJS9pBcTSa" id="form02-6">
-    
-    
     <div class="container">
         <div class="mbr-section-head mb-5">
             <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
                 <strong>Contact Form</strong></h3>
-            <h4 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-4 display-7">To change your notification email, click on any form field below.
-<div>The number of submissions is limited to 10 per day without the Form Builder.</div></h4>
+            <!-- Add PHP error/success messages -->
+            <?php if(isset($_GET['status'])): ?>
+                <div class="alert <?= $_GET['status'] === 'success' ? 'alert-success' : 'alert-danger' ?>">
+                    <?= htmlspecialchars($_GET['message']) ?>
+                </div>
+            <?php endif; ?>
         </div>
         <div class="row justify-content-center mt-4">
-            <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
-                <form action="https://mobirise.eu/" method="POST" class="mbr-form form-with-styler" data-form-title="Form Name"><input type="hidden" name="email" data-form-email="true" value="47VE2HhsR3PXOOhX2SSNU+ke6U9ZK4aORVOjheo4d9AgoTh5RPi3E7BIFukQ4H4x84gvQi0hiPmo/gO81SKz4YwbvaLXKBu0/aiCFYxcPnrJ3ZEDfRaOjKATEyUmaOFM">
+            <div class="col-lg-8 mx-auto mbr-form">
+                <form action="send_email.php" method="POST">
                     <div class="row">
-                        <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for filling out the form!</div>
-                        <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
-                            Oops...! some problem!
+                        <div class="dragArea row">
+                            <div class="col-md col-sm-12 form-group mb-3">
+                                <input type="text" name="name" placeholder="Name" class="form-control" required>
+                            </div>
+                            <div class="col-md col-sm-12 form-group mb-3">
+                                <input type="email" name="email" placeholder="Email" class="form-control" required>
+                            </div>
+                            <div class="col-12 form-group mb-3">
+                                <input type="tel" name="phone" placeholder="Phone" class="form-control">
+                            </div>
+                            <div class="col-12 form-group mb-3">
+                                <textarea name="message" placeholder="Message" class="form-control" required></textarea>
+                            </div>
+                            <!-- Honeypot field for spam prevention -->
+                            <input type="text" name="honeypot" style="display:none">
+                            <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn">
+                                <button type="submit" class="btn btn-secondary display-7">Send message</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="dragArea row">
-                        <div class="col-md col-sm-12 form-group mb-3" data-for="name">
-                            <input type="text" name="name" placeholder="Name" data-form-field="name" class="form-control" value="" id="name-form02-6">
-                        </div>
-                        <div class="col-md col-sm-12 form-group mb-3" data-for="email">
-                            <input type="email" name="email" placeholder="Email" data-form-field="email" class="form-control" value="" id="email-form02-6">
-                        </div>
-                        <div class="col-12 form-group mb-3" data-for="phone">
-                            <input type="tel" name="phone" placeholder="Phone" data-form-field="phone" class="form-control" value="" id="phone-form02-6">
-                        </div>
-                        <div class="col-12 form-group mb-3" data-for="textarea">
-                            <textarea name="textarea" placeholder="Message" data-form-field="textarea" class="form-control" id="textarea-form02-6"></textarea>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn"><button type="submit" class="btn btn-secondary display-7">Send message</button></div>
                     </div>
                 </form>
             </div>
